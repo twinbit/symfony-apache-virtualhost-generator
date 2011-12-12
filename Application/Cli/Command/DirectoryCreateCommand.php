@@ -59,14 +59,14 @@ class DirectoryCreateCommand extends Console\Command\Command {
   
   private function _checkExists($dirs, $input) {
     foreach ($dirs as $dir) {
+      $owner = posix_getpwuid(fileowner($dir));
       if (!file_exists($dir)) {
-        $messages[] = "<error> Not created: $dir </error>";
+        $messages[] = "<error> Not created: $dir (owner: {$owner['name']}) </error>";
       }
       else {
-        $messages[] = "<info> Created: $dir </info>";
+        $messages[] = "<info> Created: $dir (owner: {$owner['name']}) </info>";
       }
       // check owner
-      $owner = posix_getpwuid(fileowner($dir));
       $user = $input->getOption('user');
       if ($owner['name'] != $user) {
         $messages[] = "<comment> Chown command not possible for user {$user} on: '$dir' <error> actually is owned by {$owner['name']} </error> </comment>";
