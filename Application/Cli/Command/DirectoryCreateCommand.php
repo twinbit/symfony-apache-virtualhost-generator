@@ -15,7 +15,7 @@ class DirectoryCreateCommand extends Console\Command\Command {
     $this->setName('directory:create')
       ->setDescription('Create Directory Structure')
       ->setHelp('HELP NOT AVAILABLE')
-      ->addArgument('domain', InputArgument::REQUIRED, 'Application name')
+      ->addArgument('domain', InputArgument::REQUIRED, 'Application domain')
       ->addArgument('path', InputArgument::OPTIONAL, 'Where do you want deploy this web application ?', '/tmp')
       ->addOption('user', 'u', InputOption::VALUE_OPTIONAL, 'Specify the Apache user-group (default is "www-data")', 'www-data')
       ->setHelp(sprintf(
@@ -32,10 +32,10 @@ class DirectoryCreateCommand extends Console\Command\Command {
     
     /**
      *  Structure:
-          application/web
-          application/etc
-          application/etc/logrotate.d
-          application/logs
+          domain/web (htdocs)
+          domain/etc
+          domain/etc/logrotate.d
+          domain/logs
     */
     $messages = array();
     try {

@@ -31,8 +31,7 @@ class GenerateCommand extends Console\Command\Command {
     $email        = $input->getOption('email');
     $port         = $input->getOption('port');
     $user         = $input->getOption('user');
-    $apache_path  = $input->getOption('apachepath');
-    
+    $apache_sites_path  = $input->getOption('apachepath');
     
     // Create directories
     $command = $this->getApplication()->find('directory:create');
@@ -47,11 +46,14 @@ class GenerateCommand extends Console\Command\Command {
     
     // Create Apache Configuration
     $command = $this->getApplication()->find('apache:create');
+    
+    // build using fs path + domain name (the same schema used for directory generation)
+    $apache_fs_path = $path . DIRECTORY_SEPARATOR . $domain;
     $arguments = array(
             'command'     => 'apache:create',
             'domain'      => $domain,
             'ip'          => $ip,
-            'path'        => $path . DIRECTORY_SEPARATOR . $domain,
+            'path'        => $apache_fs_path,
             '-a'          => "www.$domain " . $alias,
             '-e'          => $email,
             '-p'          => $port
