@@ -18,9 +18,9 @@ class Virtualhost extends Application {
     	parent::__construct('Welcome to Apache Virtualhost generator', '1.0');
     	
     	$this->addCommands(array(
-			  new Command\DirectoryCommand(),
-			  new Command\ApacheConfCommand()
+    	  new Command\GenerateCommand(),
+			  new Command\DirectoryCreateCommand(),
+			  new Command\ApacheCreateCommand()
 		  ));
-		
     }
 }

@@ -9,13 +9,13 @@ use Symfony\Component\Console\Input\InputArgument,
     Symfony\Component\Console\Output\OutputInterface;
 
 
-class DirectoryCommand extends Console\Command\Command {
+class DirectoryCreateCommand extends Console\Command\Command {
   
   protected function configure() {
     $this->setName('directory:create')
       ->setDescription('Create Directory Structure')
       ->setHelp('HELP NOT AVAILABLE')
-      ->addArgument('application', InputArgument::REQUIRED, 'Application name')
+      ->addArgument('domain', InputArgument::REQUIRED, 'Application name')
       ->addArgument('path', InputArgument::OPTIONAL, 'Where do you want deploy this web application ?', '/tmp')
       ->addOption('user', 'u', InputOption::VALUE_OPTIONAL, 'Specify the Apache user-group (default is "www-data")', 'www-data')
       ->setHelp(sprintf(
@@ -26,7 +26,7 @@ class DirectoryCommand extends Console\Command\Command {
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) { 
-    $app  = $input->getArgument('application');
+    $app  = $input->getArgument('domain');
     $path = $input->getArgument('path');
     $user = $input->getOption('user');
     
@@ -41,14 +41,18 @@ class DirectoryCommand extends Console\Command\Command {
     try {
       $dirs = array('web', 'etc/logrotate.d', 'logs');
       foreach ($dirs as $dir) {
-        $base = $dest[] = $path . DIRECTORY_SEPARATOR . $app . DIRECTORY_SEPARATOR . $dir;
+        $base = $dest[$dir] = $path . DIRECTORY_SEPARATOR . $app . DIRECTORY_SEPARATOR . $dir;
         @mkdir($base, 0755, true);
         @chown($base, $user);
       }
+      // sample welcome file in web root
+      @file_put_contents($dest['web'].'/index.php', 'Welcome to '.$app."\n");
     }
     catch (Exception $e) {
       $output->writeln($e->getMessage);
     }
+    
+    // build message
     $messages = $this->_checkExists($dest, $input);
     $output->writeln($messages);
   }

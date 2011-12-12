@@ -1,0 +1,10 @@
+<VirtualHost #ip:#port> #admin_email
+  ServerName #domain #alias
+  DocumentRoot #path/web
+  ErrorLog  #path/logs/error.log 
+  CustomLog #path/logs/access.log combined
+  <Directory "#path/web">
+    AllowOverride All
+    Options FollowSymLinks
+  </Directory>
+</VirtualHost>
