@@ -13,3 +13,23 @@ Options:
  --user (-u)        File system (apache) user/group (default: www-data)
  --apachepath (-ap) Apache sites path (default: /etc/apache2/sites-available)
 
+Example:
+
+paolo ~/webapps/twinbit/scripts/CliVirtualhost $ ./virtualhost host:create test.com 127.0.0.1 -u paolo
+
+ Created: /tmp/test.com/web 
+ Created: /tmp/test.com/etc/logrotate.d 
+ Created: /tmp/test.com/logs 
+
+
+<VirtualHost 127.0.0.1:80> 
+  ServerName test.com           
+ServerAlias www.test.com 
+  DocumentRoot /tmp/test.com/web
+  ErrorLog  /tmp/test.com/logs/error.log 
+  CustomLog /tmp/test.com/logs/access.log combined
+  <Directory "/tmp/test.com/web">
+    AllowOverride All
+    Options FollowSymLinks
+  </Directory>
+</VirtualHost>
