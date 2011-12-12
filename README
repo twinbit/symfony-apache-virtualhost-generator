@@ -1,0 +1,15 @@
+Usage:
+ host:create [-a|--alias[="..."]] [-e|--email[="..."]] [-p|--port[="..."]] [-u|--user[="..."]] [-ap|--apachepath[="..."]] domain ip [path]
+
+Arguments:
+ domain             Application domain
+ ip                 Apache host ip
+ path               Filesytem path (default: /tmp)
+
+Options:
+ --alias (-a)       Apache domain Alias
+ --email (-e)       Apache administrator email
+ --port (-p)        Apache host port (default: 80)
+ --user (-u)        File system (apache) user/group (default: www-data)
+ --apachepath (-ap) Apache sites path (default: /etc/apache2/sites-available)
+
