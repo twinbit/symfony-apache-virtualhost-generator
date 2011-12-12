@@ -69,7 +69,7 @@ class DirectoryCreateCommand extends Console\Command\Command {
       $owner = posix_getpwuid(fileowner($dir));
       $user = $input->getOption('user');
       if ($owner['name'] != $user) {
-        $messages[] = "<comment> Chown not possible for user {$user} on: '$dir' <error> actually is owned by {$owner['name']} </error> </comment>";
+        $messages[] = "<comment> Chown command not possible for user {$user} on: '$dir' <error> actually is owned by {$owner['name']} </error> </comment>";
       }
     }
     return $messages;
