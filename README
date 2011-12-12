@@ -17,9 +17,9 @@ Example:
 
 paolo ~/webapps/twinbit/scripts/CliVirtualhost $ ./virtualhost host:create test.com 127.0.0.1 -u paolo
 
- Created: /tmp/test.com/web 
- Created: /tmp/test.com/etc/logrotate.d 
- Created: /tmp/test.com/logs 
+ Created: /tmp/test.com/web (owner: paolo) 
+ Created: /tmp/test.com/etc/logrotate.d (owner: paolo) 
+ Created: /tmp/test.com/logs (owner: paolo) 
 
 
 <VirtualHost 127.0.0.1:80> 
