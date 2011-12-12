@@ -26,7 +26,7 @@ class DirectoryCreateCommand extends Console\Command\Command {
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) { 
-    $app  = $input->getArgument('domain');
+    $domain  = $input->getArgument('domain');
     $path = $input->getArgument('path');
     $user = $input->getOption('user');
     
@@ -41,12 +41,12 @@ class DirectoryCreateCommand extends Console\Command\Command {
     try {
       $dirs = array('web', 'etc/logrotate.d', 'logs');
       foreach ($dirs as $dir) {
-        $base = $dest[$dir] = $path . DIRECTORY_SEPARATOR . $app . DIRECTORY_SEPARATOR . $dir;
+        $base = $dest[$dir] = $path . DIRECTORY_SEPARATOR . $domain . DIRECTORY_SEPARATOR . $dir;
         @mkdir($base, 0755, true);
         @chown($base, $user);
       }
       // sample welcome file in web root
-      @file_put_contents($dest['web'].'/index.php', 'Welcome to '.$app."\n");
+      @file_put_contents($dest['web'].'/index.php', 'Welcome to '.$domain."\n");
     }
     catch (Exception $e) {
       $output->writeln($e->getMessage);

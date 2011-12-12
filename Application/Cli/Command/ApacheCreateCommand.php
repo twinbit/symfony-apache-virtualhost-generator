@@ -24,7 +24,7 @@ class ApacheCreateCommand extends Console\Command\Command {
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) { 
-    $template = file_get_contents('./Templates/apache-conf.template');
+    $template = file_get_contents(APPLICATION_PATH.'/Templates/apache-conf.template');
     
     // standard arguments/options
     $domain  = $input->getArgument('domain');
