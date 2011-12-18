@@ -15,7 +15,7 @@ class GenerateCommand extends Console\Command\Command {
       ->setDescription('Create Apache and Directories configurations with a single commmand')
       ->addArgument('domain', InputArgument::REQUIRED, 'Application domain')
       ->addArgument('ip', InputArgument::REQUIRED, 'Apache host ip')
-      ->addArgument('path', InputArgument::OPTIONAL, 'Filesytem path', '/tmp')
+      ->addArgument('path', InputArgument::OPTIONAL, 'Filesytem path', '/var/www')
       ->addOption('alias', 'a', InputOption::VALUE_OPTIONAL, 'Apache domain Alias')
       ->addOption('email', 'e', InputOption::VALUE_OPTIONAL, 'Apache administrator email')
       ->addOption('port', 'p',  InputOption::VALUE_OPTIONAL, 'Apache host port', 80)
