@@ -16,7 +16,7 @@ class DirectoryCreateCommand extends Console\Command\Command {
       ->setDescription('Create Directory Structure')
       ->setHelp('HELP NOT AVAILABLE')
       ->addArgument('domain', InputArgument::REQUIRED, 'Application domain')
-      ->addArgument('path', InputArgument::OPTIONAL, 'Where do you want deploy this web application ?', '/tmp')
+      ->addArgument('path', InputArgument::OPTIONAL, 'Where do you want deploy this web application ?', '/var/www')
       ->addOption('user', 'u', InputOption::VALUE_OPTIONAL, 'Specify the Apache user-group (default is "www-data")', 'www-data')
       ->setHelp(sprintf(
               '%Create the directory structure, if you not use pass any arguments will be defaulted to /var/www %s',

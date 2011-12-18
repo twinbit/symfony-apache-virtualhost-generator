@@ -15,7 +15,7 @@ class ApacheCreateCommand extends Console\Command\Command {
       ->setDescription('Create Apache Configuration based on custom template')
       ->addArgument('domain', InputArgument::REQUIRED, 'Application domain')
       ->addArgument('ip', InputArgument::REQUIRED, 'IP')
-      ->addArgument('path', InputArgument::OPTIONAL, 'Where is deployed this web application ?', '/tmp')
+      ->addArgument('path', InputArgument::OPTIONAL, 'Where is deployed this web application ?', '/var/www')
       ->addOption('alias', 'a', InputOption::VALUE_OPTIONAL, 'Domain Alias')
       ->addOption('email', 'e', InputOption::VALUE_OPTIONAL, 'Administrator email')
       ->addOption('port', 'p',  InputOption::VALUE_OPTIONAL, 'PORT', 80)
