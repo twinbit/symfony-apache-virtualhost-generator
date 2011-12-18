@@ -6,9 +6,8 @@ defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FIL
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(realpath(APPLICATION_PATH . '/../library'), get_include_path())));
 
-require_once 'Symfony/Component/ClassLoader/UniversalClassLoader.php';
-
 use Symfony\Component\ClassLoader\UniversalClassLoader;
+require_once 'Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
 // Register autoloader
 $loader = new UniversalClassLoader();
