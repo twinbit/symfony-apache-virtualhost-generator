@@ -50,8 +50,12 @@ class ApacheCreateCommand extends Console\Command\Command {
       $template = str_replace('#admin_email', '', $template);
     }
     $template = str_replace(array('#domain', '#ip', '#path', '#port'), array($domain, $ip, $path, $port), $template);
-    file_put_contents($apache_path . DIRECTORY_SEPARATOR . $domain, $template);
-    $output->writeln($template);
+    if (file_put_contents($apache_path . DIRECTORY_SEPARATOR . $domain, $template)) {
+      $output->writeln("<info>'$domain' apache configuration created with success.</info>");
+    }
+    else {
+      $output->writeln("<error>'$domain' impossible to create apache configuration!.</error>");
+    }
   }
 
 }
