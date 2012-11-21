@@ -44,6 +44,7 @@ class DirectoryCreateCommand extends Console\Command\Command {
         $base = $dest[$dir] = $path . DIRECTORY_SEPARATOR . $domain . DIRECTORY_SEPARATOR . $dir;
         @mkdir($base, 0755, true);
         @chown($base, $user);
+        @chgrp($base, $user);
       }
       // sample welcome file in web root
       @file_put_contents($dest['web'].'/index.php', 'Welcome to '.$domain."\n");
